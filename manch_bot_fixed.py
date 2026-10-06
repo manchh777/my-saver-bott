@@ -23,8 +23,8 @@ BOT_TOKEN = "8970606107:AAFiQqnhM7nnCAulC70glnHGItFDwjok530"
 ADMIN_ID = 7639289885  # Ձեր Telegram ID-ն
 
 # 📣 ԱԼԻՔԻ ԿԱՐԳԱՎՈՐՈՒՄՆԵՐ
-CHANNEL_ID = "@utoplaa_777"
-CHANNEL_URL = "https://t.me/utoplaa_777"
+CHANNEL_ID = "@armenia_mafia7"
+CHANNEL_URL = "https://t.me/armenia_mafia7"
 
 bot = telebot.TeleBot(BOT_TOKEN, parse_mode=None)
 
