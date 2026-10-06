@@ -697,15 +697,31 @@ def process_mp3_callback(call):
         cleanup_prefix(prefix)
         print(traceback.format_exc())
 
+# ==================== ԳՈՐԾԱՐԿՈՒՄ (24/7 ԱՆՎՃԱՐ ՀՈՍԹԻՆԳԻ ՀԱՄԱՐ) ====================
+from flask import Flask
+from threading import Thread
 
-# ==================== ԳՈՐԾԱՐԿՈՒՄ ====================
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Բոտը ակտիվ է և աշխատում է 24/7:"
+
+def run_server():
+    # Render-ը ավտոմատ տալիս է PORT միջավայրի փոփոխականը
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
+
+def keep_alive():
+    t = Thread(target=run_server)
+    t.start()
 
 if __name__ == "__main__":
+    print("🚀 Վեբ-սերվերը գործարկվում է...")
+    keep_alive()  # Միացնում է Flask սերվերը Render-ի համար
+    
     print("🚀 Բոտը գործարկվում է...")
-    print("📦 Պահանջներ: pip install pyTelegramBotAPI yt-dlp")
-    print("🎵 MP3-ի համար: pkg install ffmpeg  (կամ apt install ffmpeg)")
-    print("⚠️  Համոզվեք, որ բոտը ադմին է @utoplaa_777 ալիքում")
-    print("⚠️  Համոզվեք, որ ADMIN_ID-ն սեղմել է /start բոտում")
+    print("📦 Պահանջներ: pip install pyTelegramBotAPI yt-dlp flask")
     try:
         bot.infinity_polling(timeout=60, long_polling_timeout=60, skip_pending=True)
     except KeyboardInterrupt:
